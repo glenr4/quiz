@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+
+	outline: red 1px solid;
+}
+
+body {
+	background-image: url("../images/melbourne-night.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: stretch;
+}
+
+#container {
+	width: 60%;
+	margin: 0px auto;
+	
+}
+
+#tabs {
+	display: inline-block;
+
+}
+
+#tabs ul {
+	padding: 0px;
+}
+
+#tabs li {
+	list-style-type: none;
+	margin: 5px 0px 5px 5px;
+}
+
+.selected-tab {
+	background-color: #efefef;	
+}
+
+.unselected-tab {
+	background-color: #242424;		
+}
+
+#content {
+	display: inline-block;
+	background-color: #efefef;
+	width: 80%;
+}
+
+#answer {
+
+}

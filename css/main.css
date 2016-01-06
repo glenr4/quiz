@@ -1,7 +1,12 @@
 * {
 	box-sizing: border-box;
 
-	outline: red 1px solid;
+	/*outline: red 1px solid;*/
+}
+
+html, body {
+	padding: 0px;
+	margin: 0px;
 }
 
 body {
@@ -11,14 +16,26 @@ body {
 	background-size: stretch;
 }
 
+h2 {
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+}
+
+p {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 #container {
-	width: 60%;
+	width: 600px;
 	margin: 0px auto;
 	
 }
 
 #tabs {
 	display: inline-block;
+	margin-top: 20px;
 
 }
 
@@ -28,6 +45,7 @@ body {
 
 #tabs li {
 	list-style-type: none;
+	padding: 3px;
 	margin: 5px 0px 5px 5px;
 }
 
@@ -36,13 +54,24 @@ body {
 }
 
 .unselected-tab {
-	background-color: #242424;		
+	background-color: #CECECE;		
 }
 
 #content {
 	display: inline-block;
 	background-color: #efefef;
-	width: 80%;
+	width: 500px;
+	min-height: 800px;
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	left: -5px;
+	margin-top: 20px;
+}
+
+#content img {
+	display: block;
+	margin: 0px auto;
 }
 
 #answer {

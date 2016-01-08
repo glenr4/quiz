@@ -17,36 +17,36 @@ body {
 }
 
 h2 {
-	padding-left: 10px;
-	padding-right: 10px;
+	padding: 20px 10px 0px 10px;
 	text-align: center;
 }
 
 p {
-	padding-left: 10px;
-	padding-right: 10px;
+	padding: 10px;
 }
 
 #container {
-	width: 600px;
+	position: relative;
+	max-width: 600px;	/* Will allow for some smaller windows and resize itself */
 	margin: 0px auto;
-	
 }
 
 #tabs {
-	display: inline-block;
-	margin-top: 20px;
-
+	/*position: absolute;*/
+	/*left: 0px;*/
+	float: left;
+	width: 100px;
 }
 
 #tabs ul {
 	padding: 0px;
+	margin: 0px;
 }
 
 #tabs li {
 	list-style-type: none;
 	padding: 3px;
-	margin: 5px 0px 5px 5px;
+	margin: 0px 0px 10px 5px;
 }
 
 .selected-tab {
@@ -58,7 +58,7 @@ p {
 }
 
 #content {
-	display: inline-block;
+	/*display: inline-block;
 	background-color: #efefef;
 	width: 500px;
 	min-height: 800px;
@@ -66,14 +66,18 @@ p {
 	padding: 0px;
 	position: relative;
 	left: -5px;
-	margin-top: 20px;
+	margin-top: 20px;*/
+
+	margin-left: 100px;
+	background-color: #efefef;
 }
 
 #content img {
 	display: block;
 	margin: 0px auto;
+	max-width: 100%;	/* re-sizes image with the window */
 }
 
 #answer {
-
+	visibility: hidden;	/* Hide the answer until JS reveals it */
 }

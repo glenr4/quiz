@@ -17,17 +17,17 @@ body {
 }
 
 h2 {
-	padding: 20px 10px 0px 10px;
+	padding-top: 20px;
 	text-align: center;
 }
 
 p {
-	padding: 10px;
+	/*padding: 10px;*/
 }
 
 #container {
 	position: relative;
-	max-width: 600px;	/* Will allow for some smaller windows and resize itself */
+	max-width: 800px;	/* Will allow for some smaller windows and resize itself */
 	margin: 0px auto;
 }
 
@@ -70,6 +70,7 @@ p {
 
 	margin-left: 100px;
 	background-color: #efefef;
+	padding: 0px 20px 20px 20px;
 }
 
 #content img {
@@ -78,6 +79,23 @@ p {
 	max-width: 100%;	/* re-sizes image with the window */
 }
 
+button {
+	padding: 5px 10px;
+}	/* need to style with gradient and hover/action effects */
+
+#answer-buttons {
+	text-align: center;
+	margin: 20px;
+}
+
+#answer-buttons button {
+	margin: 5px;
+}
+
+.next-button {
+	text-align: right;
+}
+
 #answer {
-	visibility: hidden;	/* Hide the answer until JS reveals it */
+	/*visibility: hidden;	 Hide the answer until JS reveals it */
 }

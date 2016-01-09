@@ -16,9 +16,15 @@ body {
 	background-size: stretch;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+	font-family: Helvetica, Arial;
+}
+
 h2 {
+	font-size: 2em;
 	padding-top: 20px;
 	text-align: center;
+	font-style: italic;
 }
 
 p {
@@ -27,17 +33,19 @@ p {
 
 /*Main Container*/
 #container {
-	/*position: relative;*/
+	position: relative;
+	top:25px;
 	max-width: 800px;	/* Will allow for some smaller windows and resize itself */
 	margin: 0px auto;
-	box-shadow: 12px 12px 12px -6px black;
 }
 
 /*Navigation Tabs*/
 #tabs {
-	float: left;
+	/*float: left;*/
+	position: absolute;
 	left: 0px;
 	width: 110px;
+	/*z-index: 0;*/
 }
 
 #tabs ul {
@@ -50,7 +58,7 @@ p {
 	padding: 10px 5px 10px 10px;
 	margin: 0px 0px 10px 5px;
 	border-radius: 5px 0px 0px 5px;
-	box-shadow: 4px 12px 12px -6px black;
+	box-shadow: 12px 12px 12px -6px black;
 }
 
 .selected-tab {
@@ -64,22 +72,40 @@ p {
 
 /*Content*/
 #content {
-	margin-left: 110px;
+	/*margin-left: 110px;*/
 	background-color: #efefef;
 	padding: 0px 20px 20px 20px;
 	border-radius: 0px 5px 5px 5px;	
+	position: absolute; /*Set to absolute so the box-shadow from the tabs doesn't go into this area*/
+	left: 110px;
+	box-shadow: 12px 12px 12px -6px black;
+	/*z-index: 100;*/
 }
 
 #content img {
 	display: block;
 	margin: 0px auto;
 	max-width: 100%;	/* re-sizes image with the window */
-	box-shadow: 0 8px 6px -6px black;
+	box-shadow: 8px 8px 6px -6px black;
 }
 
 button {
 	padding: 5px 10px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 8px 8px 6px -6px black;
 }	/* need to style with gradient and hover/action effects */
+
+button:hover{
+	background-color: #CECECE;
+}
+
+button:focus {
+	outline:0;
+	background-color: #CECECE;
+}
+
+
 
 #answer-buttons {
 	text-align: center;

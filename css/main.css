@@ -25,17 +25,19 @@ p {
 	/*padding: 10px;*/
 }
 
+/*Main Container*/
 #container {
-	position: relative;
+	/*position: relative;*/
 	max-width: 800px;	/* Will allow for some smaller windows and resize itself */
 	margin: 0px auto;
+	box-shadow: 12px 12px 12px -6px black;
 }
 
+/*Navigation Tabs*/
 #tabs {
-	/*position: absolute;*/
-	/*left: 0px;*/
 	float: left;
-	width: 100px;
+	left: 0px;
+	width: 110px;
 }
 
 #tabs ul {
@@ -45,38 +47,34 @@ p {
 
 #tabs li {
 	list-style-type: none;
-	padding: 3px;
+	padding: 10px 5px 10px 10px;
 	margin: 0px 0px 10px 5px;
+	border-radius: 5px 0px 0px 5px;
+	box-shadow: 4px 12px 12px -6px black;
 }
 
 .selected-tab {
 	background-color: #efefef;	
+	font-weight: bold;
 }
 
 .unselected-tab {
 	background-color: #CECECE;		
 }
 
+/*Content*/
 #content {
-	/*display: inline-block;
-	background-color: #efefef;
-	width: 500px;
-	min-height: 800px;
-	margin: 0px;
-	padding: 0px;
-	position: relative;
-	left: -5px;
-	margin-top: 20px;*/
-
-	margin-left: 100px;
+	margin-left: 110px;
 	background-color: #efefef;
 	padding: 0px 20px 20px 20px;
+	border-radius: 0px 5px 5px 5px;	
 }
 
 #content img {
 	display: block;
 	margin: 0px auto;
 	max-width: 100%;	/* re-sizes image with the window */
+	box-shadow: 0 8px 6px -6px black;
 }
 
 button {

@@ -3,6 +3,8 @@ $(document).ready(function(){
 	function questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl){
 		var question = {};
 
+		var userCorrect;
+
 		// Process user selection
 		$("#answer-buttons").click(function(event){
 			switch(event.target.id){
@@ -30,10 +32,51 @@ $(document).ready(function(){
 				$("#answer h3").empty().append("Correct!");
 				$("#answer p").css("visibility", "visible");
 				$("#answer").css("visibility", "visible");
+				if(userCorrect === undefined){
+					userCorrect = true;
+					switch(questionNo){
+						case 1:
+							$("#q1").append("<img src='images/tick.png'>");
+							break;
+						case 2:
+							$("#q2").append("<img src='images/tick.png'>");
+							break;
+						case 3:
+							$("#q3").append("<img src='images/tick.png'>");
+							break;
+						case 4:
+							$("#q4").append("<img src='images/tick.png'>");
+							break;
+						case 5:
+							$("#q5").append("<img src='images/tick.png'>");
+							break;
+						};
+				};	
 			} else {
 				$("#answer h3").empty().append("Incorrect, try again");
 				$("#answer p").css("visibility", "hidden");
 				$("#answer").css("visibility", "visible");
+				if(userCorrect === undefined){
+					userCorrect = false;
+					switch(questionNo){
+						case 1:
+							$("#q1").append(" <img src='images/cross.png'>");
+							break;
+						case 2:
+							$("#q2").append("<img src='images/cross.png'>");
+							break;
+						case 3:
+							$("#q3").append("<img src='images/cross.png'>");
+							break;
+						case 4:
+							$("#q4").append("<img src='images/cross.png'>");
+							break;
+						case 5:
+							$("#q5").append("<img src='images/cross.png'>");
+							break;
+						};
+				};	
+
 			};
 		};
 

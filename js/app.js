@@ -3,19 +3,43 @@ $(document).ready(function(){
 	function questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl){
 		var question = {};
 
+		// Process user selection
+		$("#answer-buttons").click(function(event){
+			switch(event.target.id){
+				case "answer1-btn":
+					question.chkAns(1);
+					break;
+				case "answer2-btn":
+					question.chkAns(2);
+					break;
+				case "answer3-btn":
+					question.chkAns(3);
+					break;
+				case "answer4-btn":
+					question.chkAns(4);
+					break;
+				case "answer5-btn":
+					question.chkAns(5);
+					break;
+			};
+		});
+
 		// Check if the user selected the correct answer
 		question.chkAns = function(userAnsNo){
 			if(userAnsNo === correctAnsNo){
-				return true;
+				$("#answer h3").empty().append("Correct!");
+				$("#answer p").css("visibility", "visible");
+				$("#answer").css("visibility", "visible");
 			} else {
-				return false;
+				$("#answer h3").empty().append("Incorrect, try again");
+				$("#answer p").css("visibility", "hidden");
+				$("#answer").css("visibility", "visible");
 			};
 		};
 
 		// Display a new question
 		question.newQuestion = function(){
 			// Update tabs
-			// $("#q1").addClass("selected-tab");
 			$("#q1").attr("class", "selected-tab");
 
 			// Update question
@@ -30,6 +54,9 @@ $(document).ready(function(){
 			$("#answer3-btn").empty().append(answerButtons[2]);
 			$("#answer4-btn").empty().append(answerButtons[3]);
 			$("#answer5-btn").empty().append(answerButtons[4]);
+
+			// Update answer answerText
+			$("#answer p").empty().append(answerText);
 		};
 
 		return question;
@@ -37,7 +64,6 @@ $(document).ready(function(){
 
 	// Instantiate question array
 	var questions = [];
-	// var questions;
 
 	// Create variables
 	var questionNo;
@@ -52,18 +78,13 @@ $(document).ready(function(){
 	questionNo = 1;
 	correctAnsNo = 1;
 	questionText = "Who is Melbourne named after?";
-	// answerButtons.push = "William Lamb";
-	// answerButtons.push = "William Shatner";
-	// answerButtons.push = "William Shakespeare";
-	// answerButtons.push = "Will.i.am";
-	// answerButtons.push = "Prince William";
 	answerButtons[0] = "William Lamb";
 	answerButtons[1] = "William Shatner";
 	answerButtons[2] = "William Shakespeare";
 	answerButtons[3] = "Will.i.am";
 	answerButtons[4] = "Prince William";
 
-	answerText = 'It was named "Melbourne" in 1837 by the Governor of New South Wales, Sir Richard Bourke, in honour of the British Prime Minister of the day, William Lamb, 2nd Viscount Melbourne, who resided in the village of Melbourne in Derbyshire.';
+	answerText = 'It was named "Melbourne" in 1837 by the Governor of New South Wales, Sir Richard Bourke, in honour of the British Prime Minister of the day, <span class="bold">William Lamb</span>, 2nd Viscount Melbourne, who resided in the village of Melbourne in Derbyshire.';
 	imgUrl = "images/william-lamb.jpg";
 
 	// Create object
@@ -71,7 +92,5 @@ $(document).ready(function(){
 
 	questions[0].newQuestion();
 
-	// questions = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
 
-	// questions.newQuestion();
 });

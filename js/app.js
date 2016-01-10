@@ -113,6 +113,7 @@ $(document).ready(function(){
 
 			// Hide the answer
 			$("#answer").css("visibility", "hidden");
+			$("#answer p").css("visibility", "hidden");
 		};
 
 		return question;

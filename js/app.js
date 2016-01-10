@@ -29,6 +29,7 @@ $(document).ready(function(){
 		// Check if the user selected the correct answer
 		question.chkAns = function(userAnsNo){
 			if(userAnsNo === correctAnsNo){
+				// Correct
 				$("#answer h3").empty().append("Correct!");
 				$("#answer p").css("visibility", "visible");
 				$("#answer").css("visibility", "visible");
@@ -36,23 +37,24 @@ $(document).ready(function(){
 					userCorrect = true;
 					switch(questionNo){
 						case 1:
-							$("#q1").append("<img src='images/tick.png'>");
+							$("#q1").append("<span class='correct'>");
 							break;
 						case 2:
-							$("#q2").append("<img src='images/tick.png'>");
+							$("#q2").append("<span class='correct'>");
 							break;
 						case 3:
-							$("#q3").append("<img src='images/tick.png'>");
+							$("#q3").append("<span class='correct'>");
 							break;
 						case 4:
-							$("#q4").append("<img src='images/tick.png'>");
+							$("#q4").append("<span class='correct'>");
 							break;
 						case 5:
-							$("#q5").append("<img src='images/tick.png'>");
+							$("#q5").append("<span class='correct'>");
 							break;
 						};
 				};	
 			} else {
+				// Incorrect
 				$("#answer h3").empty().append("Incorrect, try again");
 				$("#answer p").css("visibility", "hidden");
 				$("#answer").css("visibility", "visible");
@@ -60,19 +62,19 @@ $(document).ready(function(){
 					userCorrect = false;
 					switch(questionNo){
 						case 1:
-							$("#q1").append(" <img src='images/cross.png'>");
+							$("#q1").append("<span class='incorrect'>");
 							break;
 						case 2:
-							$("#q2").append("<img src='images/cross.png'>");
+							$("#q2").append("<span class='incorrect'>");
 							break;
 						case 3:
-							$("#q3").append("<img src='images/cross.png'>");
+							$("#q3").append("<span class='incorrect'>");
 							break;
 						case 4:
-							$("#q4").append("<img src='images/cross.png'>");
+							$("#q4").append("<span class='incorrect'>");
 							break;
 						case 5:
-							$("#q5").append("<img src='images/cross.png'>");
+							$("#q5").append("<span class='incorrect'>");
 							break;
 						};
 				};	
@@ -83,7 +85,7 @@ $(document).ready(function(){
 		// Display a new question
 		question.newQuestion = function(){
 			// Update tabs
-			$("#q1").attr("class", "selected-tab");
+			$("#q"+questionNo).attr("class", "selected-tab");
 
 			// Update question
 			$("#content h2").empty().append(questionText);
@@ -103,7 +105,7 @@ $(document).ready(function(){
 		};
 
 		return question;
-	};
+	};	// End of questionObject
 
 	// Instantiate question array
 	var questions = [];
@@ -130,10 +132,24 @@ $(document).ready(function(){
 	answerText = 'It was named "Melbourne" in 1837 by the Governor of New South Wales, Sir Richard Bourke, in honour of the British Prime Minister of the day, <span class="bold">William Lamb</span>, 2nd Viscount Melbourne, who resided in the village of Melbourne in Derbyshire.';
 	imgUrl = "images/william-lamb.jpg";
 
-	// Create object
 	questions[0] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
 
+	// Load first question for user
 	questions[0].newQuestion();
 
+	// Question 2 Data
+	questionNo = 2;
+	correctAnsNo = 3;
+	questionText = "Who is one of Melbourne's founders?";
+	answerButtons[0] = "Superman";
+	answerButtons[1] = "Spiderman";
+	answerButtons[2] = "Batman";
+	answerButtons[3] = "Robin";
+	answerButtons[4] = "The Green Lantern";
+
+	answerText = "As a leading member of the Port Phillip Association, in 1835 <span class='bold'>John Batman</span> led an expedition which explored the Port Phillip Bay area on the Australian mainland with a view to establishing a new settlement there. Batman is best known for his role in the founding of the settlement on the Yarra River which became the city of Melbourne, eventual capital of the new Colony of Victoria, and one of Australia's largest and most important cities.";
+	imgUrl = "images/john-batman.jpg";
+
+	questions[1] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
 
 });

@@ -69,8 +69,18 @@ h2 {
 	float: right;
 }
 
-#tabs img {
-	float: right; /* Stops icon resizing the line */
+.correct {
+	background-image: url("../images/tick.png");
+	float: right;
+	height: 1em;
+	width: 1em;
+}
+
+.incorrect {
+	background-image: url("../images/cross.png");
+	float: right;
+	height: 1em;
+	width: 1em;
 }
 
 /*Content*/

@@ -53,14 +53,12 @@ h2 {
 	margin: 0px 0px 10px 5px;
 	border-radius: 5px 0px 0px 5px;
 	box-shadow: 12px 12px 12px -6px black;
-	/*height: 38px;*/
-	/*height: 1rem;*/
-	/*float: right;*/
 }
 
 .selected-tab {
 	background-color: #efefef;	
 	font-weight: bold;
+	float: right;
 }
 
 .unselected-tab {

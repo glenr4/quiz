@@ -5,24 +5,26 @@ $(document).ready(function(){
 
 		var userCorrect;
 
-		// Process user selection
+		// Process user answer
 		$("#answer-buttons").click(function(event){
-			switch(event.target.id){
-				case "answer1-btn":
-					question.chkAns(1);
-					break;
-				case "answer2-btn":
-					question.chkAns(2);
-					break;
-				case "answer3-btn":
-					question.chkAns(3);
-					break;
-				case "answer4-btn":
-					question.chkAns(4);
-					break;
-				case "answer5-btn":
-					question.chkAns(5);
-					break;
+			if(currentQuestion === questionNo){
+				switch(event.target.id){
+					case "answer1-btn":
+						question.chkAns(1);
+						break;
+					case "answer2-btn":
+						question.chkAns(2);
+						break;
+					case "answer3-btn":
+						question.chkAns(3);
+						break;
+					case "answer4-btn":
+						question.chkAns(4);
+						break;
+					case "answer5-btn":
+						question.chkAns(5);
+						break;
+				};
 			};
 		});
 
@@ -84,7 +86,13 @@ $(document).ready(function(){
 
 		// Display a new question
 		question.newQuestion = function(){
+			// Set this question to be the current one
+			currentQuestion = questionNo;
+
 			// Update tabs
+			if(questionNo > 1){
+				$("#q"+(questionNo-1)).attr("class", "unselected-tab");	
+			}
 			$("#q"+questionNo).attr("class", "selected-tab");
 
 			// Update question
@@ -102,12 +110,15 @@ $(document).ready(function(){
 
 			// Update answer answerText
 			$("#answer p").empty().append(answerText);
+
+			// Hide the answer
+			$("#answer").css("visibility", "hidden");
 		};
 
 		return question;
 	};	// End of questionObject
 
-	// Instantiate question array
+	// Array for question objects
 	var questions = [];
 
 	// Create variables
@@ -117,6 +128,7 @@ $(document).ready(function(){
 	var answerButtons = [];
 	var answerText;
 	var imgUrl;
+	var currentQuestion;
 
 
 	// Question 1 Data
@@ -151,5 +163,13 @@ $(document).ready(function(){
 	imgUrl = "images/john-batman.jpg";
 
 	questions[1] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
+
+	// Load next question
+	$("#next-btn").click(function(event){
+		if(currentQuestion < questions.length){
+			currentQuestion++;
+			questions[currentQuestion - 1].newQuestion();
+		};
+	});
 
 });

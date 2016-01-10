@@ -1,98 +1,77 @@
 $(document).ready(function(){
-	// Store Ryu state
-	var ryuPose = "still";
+	// Create a question object for each question
+	function questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl){
+		var question = {};
 
-	// Ryu ready pose
-	$(".ryu").mouseenter(function(){
-		ryuPose = ryuReady();
-	});
-
-	// Ryu still pose
-	$(".ryu").mouseleave(function(){
-		ryuPose = ryuStill();
-	});
-
-	// Ryu cool pose
-	$(document).keydown(function(event){
-		if(event.keyCode === 88){
-			ryuCool();
-		}
-	});
-
-	// Ryu revert cool pose
-	$(document).keyup(function(event){
-		if(event.keyCode === 88){
-			if(ryuPose ==="ready"){
-				ryuPose = ryuReady();
+		// Check if the user selected the correct answer
+		question.chkAns = function(userAnsNo){
+			if(userAnsNo === correctAnsNo){
+				return true;
 			} else {
-				ryuPose = ryuStill();
+				return false;
 			};
 		};
-	});
 
-	// Throw hadouken
-	$(".ryu").mousedown(function(){
-		throwHadouken();
-	});
+		// Display a new question
+		question.newQuestion = function(){
+			// Update tabs
+			// $("#q1").addClass("selected-tab");
+			$("#q1").attr("class", "selected-tab");
 
-	// Finish hadouken
-	$(".ryu").mouseup(function(){
-		finishHadouken();
-	});
+			// Update question
+			$("#content h2").empty().append(questionText);
+
+			// Update image
+			$("#content img").attr("src", imgUrl);
+
+			// Update answer buttons
+			$("#answer1-btn").empty().append(answerButtons[0]);
+			$("#answer2-btn").empty().append(answerButtons[1]);
+			$("#answer3-btn").empty().append(answerButtons[2]);
+			$("#answer4-btn").empty().append(answerButtons[3]);
+			$("#answer5-btn").empty().append(answerButtons[4]);
+		};
+
+		return question;
+	};
+
+	// Instantiate question array
+	var questions = [];
+	// var questions;
+
+	// Create variables
+	var questionNo;
+	var correctAnsNo;
+	var questionText;
+	var answerButtons = [];
+	var answerText;
+	var imgUrl;
+
+
+	// Question 1 Data
+	questionNo = 1;
+	correctAnsNo = 1;
+	questionText = "Who is Melbourne named after?";
+	// answerButtons.push = "William Lamb";
+	// answerButtons.push = "William Shatner";
+	// answerButtons.push = "William Shakespeare";
+	// answerButtons.push = "Will.i.am";
+	// answerButtons.push = "Prince William";
+	answerButtons[0] = "William Lamb";
+	answerButtons[1] = "William Shatner";
+	answerButtons[2] = "William Shakespeare";
+	answerButtons[3] = "Will.i.am";
+	answerButtons[4] = "Prince William";
+
+	answerText = 'It was named "Melbourne" in 1837 by the Governor of New South Wales, Sir Richard Bourke, in honour of the British Prime Minister of the day, William Lamb, 2nd Viscount Melbourne, who resided in the village of Melbourne in Derbyshire.';
+	imgUrl = "images/william-lamb.jpg";
+
+	// Create object
+	questions[0] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
+
+	questions[0].newQuestion();
+
+	// questions = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
+
+	// questions.newQuestion();
 });
-
-// Throw hadouken
-function throwHadouken (){
-	// Play Hadouken sound and change to throwing image
-	playHadouken();
-	$(".ryu-ready").hide();
-	$(".ryu-throwing").show();
-	// Animate hadouken to right extent of main div
-	$(".hadouken").finish().show().animate(
-		{"left":"1020px"},
-		500,
-		// Hide hadouken image and reset position
-		function () {
-			$(this).hide();
-			$(this).css("left","520px");
-		}
-	);
-};
-
-// Hadouken sound
-function playHadouken () {
-	$('#hadouken-sound')[0].volume = 0.5;
-	$('#hadouken-sound')[0].load();
-	$('#hadouken-sound')[0].play();
-};
-
-// Finish hadouken
-function finishHadouken(){
-	$(".ryu-ready").show();
-	$(".ryu-throwing").hide();	
-};
-
-// Ryu ready
-function ryuReady () {
-	$(".ryu-still").hide();
-	$(".ryu-ready").show();
-	$(".ryu-cool").hide();
-	// Update state
-	return "ready";
-};
-
-// Ryu still
-function ryuStill () {
-	$(".ryu-still").show();
-	$(".ryu-ready").hide();
-	$(".ryu-cool").hide();
-	// Update state
-	ryuPose = "still";
-};
-
-// Ryu cool
-function ryuCool () {
-	$(".ryu-still").hide();
-	$(".ryu-ready").hide();
-	$(".ryu-cool").show();	
-};

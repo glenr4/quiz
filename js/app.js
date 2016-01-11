@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	// Create a question object for each question
 	function questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl){
+
 		var question = {};
 
 		var userCorrect;
@@ -108,21 +109,29 @@ $(document).ready(function(){
 			$("#answer4-btn").empty().append(answerButtons[3]);
 			$("#answer5-btn").empty().append(answerButtons[4]);
 
-			// Update answer answerText
-			$("#answer p").empty().append(answerText);
-
 			// Hide the answer
 			$("#answer").css("visibility", "hidden");
 			$("#answer p").css("visibility", "hidden");
+
+			// Update answer answerText
+			$("#answer p").empty().append(answerText);
 		};
 
 		return question;
-	};	// End of questionObject
+	};	// End of question
+
+	// Load next question
+	$("#next-btn").click(function(event){
+		if(currentQuestion < questions.length){
+			currentQuestion++;
+			questions[currentQuestion - 1].newQuestion();
+		};
+	});
 
 	// Array for question objects
 	var questions = [];
 
-	// Create variables
+	// Global variables
 	var questionNo;
 	var correctAnsNo;
 	var questionText;
@@ -147,8 +156,8 @@ $(document).ready(function(){
 
 	questions[0] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
 
-	// Load first question for user
-	questions[0].newQuestion();
+	// undefined?
+	console.log(questions[0][questionNo]);
 
 	// Question 2 Data
 	questionNo = 2;
@@ -165,12 +174,21 @@ $(document).ready(function(){
 
 	questions[1] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
 
-	// Load next question
-	$("#next-btn").click(function(event){
-		if(currentQuestion < questions.length){
-			currentQuestion++;
-			questions[currentQuestion - 1].newQuestion();
-		};
-	});
+	// Question 3 Data
+	questionNo = 3;
+	correctAnsNo = 4;
+	questionText = "When was the Formula 1 Grand Prix first held in Melbourne?";
+	answerButtons[0] = "1928";
+	answerButtons[1] = "1985";
+	answerButtons[2] = "1990";
+	answerButtons[3] = "1996";
+	answerButtons[4] = "2015";
 
+	answerText = "The Formula 1 Grand Prix was first held in Melbourne in <span class='bold'>1996</span>. The Grand Prix is the oldest surviving motor racing competition held in Australia having been held 79 times since it was first run at Phillip Island in 1928. It was held at various locations through to 1985 where it was in Adelaide until 1995.";
+	imgUrl = "images/f1-melbourne.jpg";
+
+	questions[2] = questionObject(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl);
+
+	// Load first question for user
+	questions[0].newQuestion();
 });

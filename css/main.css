@@ -131,3 +131,7 @@ button:focus {
 	visibility: hidden;	 /* Hide the answer until JS reveals it */
 }
 
+#summary {
+	display: none;
+	text-align: center;
+}

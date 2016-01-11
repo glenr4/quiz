@@ -3,8 +3,6 @@
 $(document).ready(function(){
 	// Create a question object for each question
 	function Question(args){
-
-		// var question = {};
 		this.questionNo = args.questionNo;
 		this.correctAnsNo = args.correctAnsNo;
 		this.questionText = args.questionText;
@@ -67,6 +65,11 @@ $(document).ready(function(){
 		};
 	};
 
+	// Returns the result of the users answer
+	Question.prototype.getResult = function(){
+		return  +this.userCorrect;
+	};
+
 	// Process user answer
 	$("#answer-buttons").click(function(event){
 		switch(event.target.id){
@@ -93,8 +96,29 @@ $(document).ready(function(){
 		if(currentQuestion < questions.length){
 			currentQuestion++;
 			questions[currentQuestion - 1].newQuestion();
+		} else {
+			summary();	
 		};
 	});
+
+	// Show summary of results
+	function summary(){
+		// Calculate number of correct answers
+		var total = 0;
+		for (var i=0; i < questions.length; i++){
+			total += questions[i].getResult();
+		};
+
+		// Update page
+		$("#q"+currentQuestion).attr("class", "unselected-tab");
+		$("#answer-buttons").css("display","none");
+		$("#answer p").css("display","none");
+		$("#answer").css("display","none");		
+		$("#content h2").empty().append("Thanks for playing");
+		$("#summary").append("<p>You scored " + total +" out of "+ questions.length);
+		$("#summary").css("display", "block");
+		$("#content img").attr("src", this.imgUrl);
+	};
 
 	// Global variables
 	var questions = [];
@@ -179,6 +203,7 @@ $(document).ready(function(){
 		],
 		imgUrl: "images/fed.jpg"
 	}));
+
 	// Load first question for user
 	questions[0].newQuestion();
 });

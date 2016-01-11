@@ -137,7 +137,7 @@ $(document).ready(function(){
 		questionNo: 3,
 		correctAnsNo: 4,
 		questionText: "When was the Formula 1 Grand Prix first held in Melbourne?",
-		answerText: "The Formula 1 Grand Prix was first held in Melbourne in <span class='bold'>1996</span>. The Grand Prix is the oldest surviving motor racing competition held in Australia having been held 79 times since it was first run at Phillip Island in 1928. It was held at various locations through to 1985 where it was in Adelaide until 1995.",
+		answerText: "The Formula 1 Grand Prix was first held in Melbourne in <b>1996</b>. The Grand Prix is the oldest surviving motor racing competition held in Australia having been held 79 times since it was first run at Phillip Island in 1928. It was held at various locations through to 1985 where it was in Adelaide until 1995.",
 		answerChoices: [
 			"1928",
 			"1985",
@@ -148,6 +148,37 @@ $(document).ready(function(){
 		imgUrl: "images/f1-melbourne.jpg"
 	}));
 
+	// Question 4 Data
+	questions.push(new Question({
+		questionNo: 4,
+		correctAnsNo: 3,
+		questionText: "Where did Australian rules football start?",
+		answerText: "In 1857, Tom Wills, one of the founders of Australian Football, returned to Australia after schooling in England where he was football captain of Rugby School and a brilliant cricketer. Initially, he advocated the winter game of football as a way of keeping cricketers fit during off-season. The new game was devised by Wills, his cousin H.C.A. Harrison, W.J. Hammersley and J.B. Thompson. The <b>Melbourne Football Club</b> was formed on August 7, 1858 – the year of the code's first recorded match between Scotch College and Melbourne Grammar School.",
+		answerChoices: [
+			"Sydney",
+			"Adelaide",
+			"Melbourne",
+			"Brisbane",
+			"Hobart"
+		],
+		imgUrl: "images/early-afl.jpg"
+	}));
+
+	// Question 5 Data
+	questions.push(new Question({
+		questionNo: 5,
+		correctAnsNo: 5,
+		questionText: "How many years in a row has Melbourne been named the world's most livable city?",
+		answerText: "In 2015, Melbourne was named the world’s most liveable city for the fifth year in a row. The world’s five most liveable cities named by The Economist were Melbourne, Vienna, Vancouver, Toronto, Adelaide and Calgary. Melbourne received a near perfect score of 97.5 out of 100.",
+		answerChoices: [
+			"1",
+			"2",
+			"3",
+			"4",
+			"5"
+		],
+		imgUrl: "images/fed.jpg"
+	}));
 	// Load first question for user
 	questions[0].newQuestion();
 });

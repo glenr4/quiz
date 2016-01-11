@@ -131,6 +131,3 @@ button:focus {
 	visibility: hidden;	 /* Hide the answer until JS reveals it */
 }
 
-.bold {
-	font-weight: bold;	
-}

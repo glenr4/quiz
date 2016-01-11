@@ -2,26 +2,20 @@
 
 $(document).ready(function(){
 	// Create a question object for each question
-	// function new Question(questionNo, correctAnsNo, questionText, answerButtons, answerText, imgUrl){
-	function Question(questionNo, correctAnsNo, questionText, answerButtonsArr, answerText, imgUrl){
+	function Question(args){
 
 		// var question = {};
-		this.questionNo = questionNo;
-		this.correctAnsNo = correctAnsNo;
-		this.questionText = questionText;
-
-		// var answerButtons = new Array();
-		this.answerButtons = answerButtonsArr;
-		this.answerText = answerText;
-		this.imgUrl = imgUrl;
+		this.questionNo = args.questionNo;
+		this.correctAnsNo = args.correctAnsNo;
+		this.questionText = args.questionText;
+		this.answerButtons = args.answerChoices;
+		this.answerText = args.answerText;
+		this.imgUrl = args.imgUrl;
 		var userCorrect;
 	};
 
 	// Display a new question
 	Question.prototype.newQuestion = function(){
-		// Set this question to be the current one
-		// currentQuestion = questionNo;
-
 		// Update tabs
 		if(this.questionNo > 1){
 			$("#q"+(this.questionNo-1)).attr("class", "unselected-tab");	
@@ -58,23 +52,7 @@ $(document).ready(function(){
 			$("#answer").css("visibility", "visible");
 			if(this.userCorrect === undefined){
 				this.userCorrect = true;
-				switch(this.questionNo){
-					case 1:
-						$("#q1").append("<span class='correct'>");
-						break;
-					case 2:
-						$("#q2").append("<span class='correct'>");
-						break;
-					case 3:
-						$("#q3").append("<span class='correct'>");
-						break;
-					case 4:
-						$("#q4").append("<span class='correct'>");
-						break;
-					case 5:
-						$("#q5").append("<span class='correct'>");
-						break;
-					};
+				$("#q" + this.questionNo).append("<span class='correct'>");
 			};	
 		} else {
 			// Incorrect
@@ -83,55 +61,32 @@ $(document).ready(function(){
 			$("#answer").css("visibility", "visible");
 			if(this.userCorrect === undefined){
 				this.userCorrect = false;
-				switch(this.questionNo){
-					case 1:
-						$("#q1").append("<span class='incorrect'>");
-						break;
-					case 2:
-						$("#q2").append("<span class='incorrect'>");
-						break;
-					case 3:
-						$("#q3").append("<span class='incorrect'>");
-						break;
-					case 4:
-						$("#q4").append("<span class='incorrect'>");
-						break;
-					case 5:
-						$("#q5").append("<span class='incorrect'>");
-						break;
-					};
+				$("#q" + this.questionNo).append("<span class='incorrect'>");
 			};	
 
 		};
 	};
-/*
+
 	// Process user answer
 	$("#answer-buttons").click(function(event){
-		// if(currentQuestion === this.questionNo){
-			switch(event.target.id){
-				case "answer1-btn":
-					questions[currentQuestion-1].chkAns(1);
-					break;
-				case "answer2-btn":
-					questions[currentQuestion-1].chkAns(2);
-					break;
-				case "answer3-btn":
-					questions[currentQuestion-1].chkAns(3);
-					break;
-				case "answer4-btn":
-					questions[currentQuestion-1].chkAns(4);
-					break;
-				case "answer5-btn":
-					questions[currentQuestion-1].chkAns(5);
-					break;
-			};
-		// };
+		switch(event.target.id){
+			case "answer1-btn":
+				questions[currentQuestion-1].chkAns(1);
+				break;
+			case "answer2-btn":
+				questions[currentQuestion-1].chkAns(2);
+				break;
+			case "answer3-btn":
+				questions[currentQuestion-1].chkAns(3);
+				break;
+			case "answer4-btn":
+				questions[currentQuestion-1].chkAns(4);
+				break;
+			case "answer5-btn":
+				questions[currentQuestion-1].chkAns(5);
+				break;
+		};
 	});
-*/
-
-
-		// return question;
-	// };	// End of question
 
 	// Load next question
 	$("#next-btn").click(function(event){
@@ -141,67 +96,57 @@ $(document).ready(function(){
 		};
 	});
 
-	// Array for question objects
-	var questions = [];
-
 	// Global variables
-	var questionNo;
-	var correctAnsNo;
-	var questionText;
-	var answerButtonsArr = [];
-	var answerText;
-	var imgUrl;
-	var currentQuestion;
-
+	var questions = [];
+	var currentQuestion = 1;
 
 	// Question 1 Data
-	questionNo = 1;
-	correctAnsNo = 1;
-	questionText = "Who is Melbourne named after?";
-	answerButtonsArr[0] = "William Lamb";
-	answerButtonsArr[1] = "William Shatner";
-	answerButtonsArr[2] = "William Shakespeare";
-	answerButtonsArr[3] = "Will.i.am";
-	answerButtonsArr[4] = "Prince William";
+	questions.push(new Question({
+		questionNo: 1,
+		correctAnsNo: 1,
+		questionText: "Who is Melbourne named after?",
+		answerText: "It was named \"Melbourne\" in 1837 by the Governor of New South Wales, Sir Richard Bourke, in honour of the British Prime Minister of the day, <b>William Lamb</b>, 2nd Viscount Melbourne, who resided in the village of Melbourne in Derbyshire.",
+		answerChoices: [
+			"William Lamb",
+			"William Shatner",
+			"William Shakespeare",
+			"Will.i.am",
+			"Prince William"
+		],
+		imgUrl: "images/william-lamb.jpg"
+	}));
 
-	answerText = 'It was named "Melbourne" in 1837 by the Governor of New South Wales, Sir Richard Bourke, in honour of the British Prime Minister of the day, <span class="bold">William Lamb</span>, 2nd Viscount Melbourne, who resided in the village of Melbourne in Derbyshire.';
-	imgUrl = "images/william-lamb.jpg";
+	// Question 2 Data
+	questions.push(new Question({
+		questionNo: 2,
+		correctAnsNo: 3,
+		questionText: "Who is one of Melbourne's founders?",
+		answerText: "As a leading member of the Port Phillip Association, in 1835 <b>John Batman</b> led an expedition which explored the Port Phillip Bay area on the Australian mainland with a view to establishing a new settlement there. Batman is best known for his role in the founding of the settlement on the Yarra River which became the city of Melbourne, eventual capital of the new Colony of Victoria, and one of Australia's largest and most important cities.",
+		answerChoices: [
+			"Superman",
+			"Spiderman",
+			"Batman",
+			"Robin",
+			"The Green Lantern"
+		],
+		imgUrl: "images/john-batman.jpg"
+	}));
 
-	questions[0] = new Question(questionNo, correctAnsNo, questionText, answerButtonsArr, answerText, imgUrl);
-
-	// // undefined?
-	// // console.log(questions[0][questionNo]);
-
-	// // Question 2 Data
-	questionNo = 2;
-	correctAnsNo = 3;
-	questionText = "Who is one of Melbourne's founders?";
-	answerButtonsArr[0] = "Superman";
-	answerButtonsArr[1] = "Spiderman";
-	answerButtonsArr[2] = "Batman";
-	answerButtonsArr[3] = "Robin";
-	answerButtonsArr[4] = "The Green Lantern";
-
-	answerText = "As a leading member of the Port Phillip Association, in 1835 <span class='bold'>John Batman</span> led an expedition which explored the Port Phillip Bay area on the Australian mainland with a view to establishing a new settlement there. Batman is best known for his role in the founding of the settlement on the Yarra River which became the city of Melbourne, eventual capital of the new Colony of Victoria, and one of Australia's largest and most important cities.";
-	imgUrl = "images/john-batman.jpg";
-
-	questions[1] = new Question(questionNo, correctAnsNo, questionText, answerButtonsArr, answerText, imgUrl);
-
-
-	// // Question 3 Data
-	questionNo = 3;
-	correctAnsNo = 4;
-	questionText = "When was the Formula 1 Grand Prix first held in Melbourne?";
-	answerButtonsArr[0] = "1928";
-	answerButtonsArr[1] = "1985";
-	answerButtonsArr[2] = "1990";
-	answerButtonsArr[3] = "1996";
-	answerButtonsArr[4] = "2015";
-
-	answerText = "The Formula 1 Grand Prix was first held in Melbourne in <span class='bold'>1996</span>. The Grand Prix is the oldest surviving motor racing competition held in Australia having been held 79 times since it was first run at Phillip Island in 1928. It was held at various locations through to 1985 where it was in Adelaide until 1995.";
-	imgUrl = "images/f1-melbourne.jpg";
-
-	questions[2] = new Question(questionNo, correctAnsNo, questionText, answerButtonsArr, answerText, imgUrl);
+	// Question 3 Data
+	questions.push(new Question({
+		questionNo: 3,
+		correctAnsNo: 4,
+		questionText: "When was the Formula 1 Grand Prix first held in Melbourne?",
+		answerText: "The Formula 1 Grand Prix was first held in Melbourne in <span class='bold'>1996</span>. The Grand Prix is the oldest surviving motor racing competition held in Australia having been held 79 times since it was first run at Phillip Island in 1928. It was held at various locations through to 1985 where it was in Adelaide until 1995.",
+		answerChoices: [
+			"1928",
+			"1985",
+			"1990",
+			"1996",
+			"2015"
+		],
+		imgUrl: "images/f1-melbourne.jpg"
+	}));
 
 	// Load first question for user
 	questions[0].newQuestion();

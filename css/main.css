@@ -123,7 +123,7 @@ button:focus {
 	margin: 5px;
 }
 
-.next-button {
+#next-button {
 	text-align: right;
 }
 
@@ -134,4 +134,10 @@ button:focus {
 #summary {
 	display: none;
 	text-align: center;
+}
+
+#new-button {
+	display: none;
+	text-align: center;	
+	margin-top: 20px;
 }

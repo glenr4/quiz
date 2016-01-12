@@ -70,6 +70,11 @@ $(document).ready(function(){
 		return  +this.userCorrect;
 	};
 
+	// Reset game
+	Question.prototype.reset = function(){
+		this.userCorrect = undefined;
+	};
+
 	// Process user answer
 	$("#answer-buttons").click(function(event){
 		switch(event.target.id){
@@ -101,6 +106,32 @@ $(document).ready(function(){
 		};
 	});
 
+	// Play again
+	$("#new-btn").click(function(event){
+		// Clear results
+		for (var i=0; i < questions.length; i++){
+			questions[i].reset();
+		};
+
+		// Reset tabs
+		$("#tabs .correct").remove();
+		$("#tabs .incorrect").remove();
+
+		// Remove summary and Play Again button
+		$("#summary").css("display", "none");
+		$("#new-button").css("display", "none");
+
+		// Add answer elements back in
+		$("#answer-buttons").css("display","block");
+		$("#answer p").css("display","block");
+		$("#answer").css("display","block");		
+
+		// Load first question for user
+		currentQuestion = 1;
+		questions[0].newQuestion();
+
+	});
+
 	// Show summary of results
 	function summary(){
 		// Calculate number of correct answers
@@ -115,9 +146,10 @@ $(document).ready(function(){
 		$("#answer p").css("display","none");
 		$("#answer").css("display","none");		
 		$("#content h2").empty().append("Thanks for playing");
-		$("#summary").append("<p>You scored " + total +" out of "+ questions.length);
+		$("#summary").empty().append("<p>You scored " + total +" out of "+ questions.length);
 		$("#summary").css("display", "block");
-		$("#content img").attr("src", this.imgUrl);
+		$("#content img").attr("src", "images/fed.jpg");
+		$("#new-button").css("display", "block");
 	};
 
 	// Global variables
